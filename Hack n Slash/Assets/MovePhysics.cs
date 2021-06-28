@@ -6,7 +6,7 @@ public class MovePhysics : MonoBehaviour, IMovement
     private Rigidbody2D rb2D;
 
     private float moveSpeed;
-    private Vector2 movementDirection;
+    private Vector2 direction;
     private bool isFacingRight = true;
 
     private void Start()
@@ -14,23 +14,23 @@ public class MovePhysics : MonoBehaviour, IMovement
         rb2D = GetComponent<Rigidbody2D>();
     }
 
-    public void SetMoveSpeed(float _moveSpeed)
+    public void SetMoveSpeed(float moveSpeed)
     {
-        moveSpeed = _moveSpeed;
+        this.moveSpeed = moveSpeed;
         //Debug.Log(moveSpeed);
     }
-    public void SetMovement(Vector2 _direction)
+    public void SetMovement(Vector2 direction)
     {
-        movementDirection = _direction;
+        this.direction = direction;
     }
     private void Move()
     {
-        rb2D.MovePosition(rb2D.position + movementDirection * moveSpeed * Time.deltaTime);
+        rb2D.MovePosition(rb2D.position + direction * moveSpeed * Time.deltaTime);
         //Debug.Log(moveSpeed, this);
 
-        if (movementDirection.x < 0 && isFacingRight)
+        if (direction.x < 0 && isFacingRight)
             Flip();
-        else if (movementDirection.x > 0 && !isFacingRight)
+        else if (direction.x > 0 && !isFacingRight)
             Flip();
 
     }

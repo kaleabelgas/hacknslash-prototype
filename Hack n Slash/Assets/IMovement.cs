@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IMovement
 {
-    void SetMovement(Vector2 _direction);
-    void SetMoveSpeed(float _moveSpeed);
+    void SetMovement(Vector2 direction);
+    void SetMoveSpeed(float moveSpeed);
 }
