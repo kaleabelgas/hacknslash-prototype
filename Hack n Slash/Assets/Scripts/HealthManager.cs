@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    public int CurrentHealth { get; private set; }
+    private int healthDefault;
 
     public event Action<string> OnEntityDeath;
+
     public event Action<int> OnEntityHit;
-    
-    private int healthDefault;
+
+    public int CurrentHealth { get; private set; }
 
     public virtual void GetDamaged(int damage, GameObject hitter)
     {
@@ -20,15 +21,16 @@ public class HealthManager : MonoBehaviour
         if (CurrentHealth <= 0)
         {
             Die();
-        } 
+        }
     }
+
     public void Die() => OnEntityDeath?.Invoke(gameObject.tag);
 
-    public void GetHealed(int _heal) => CurrentHealth = Mathf.Min(healthDefault, CurrentHealth + _heal);
+    public void GetHealed(int heal) => CurrentHealth = Mathf.Min(healthDefault, CurrentHealth + heal);
 
-    public void SetHealth(int _health = 0)
+    public void SetHealth(int health = 0)
     {
-        healthDefault = _health;
+        healthDefault = health;
         CurrentHealth = healthDefault;
     }
 }

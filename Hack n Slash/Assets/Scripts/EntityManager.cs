@@ -10,7 +10,7 @@ public class EntityManager : MonoBehaviour
     {
         GetComponent<IMovement>().SetMoveSpeed(entity.Speed);
 
-        if(!(entity.EntitySprite is null))
+        if (!(entity.EntitySprite is null))
         {
             GetComponent<SpriteRenderer>().sprite = entity.EntitySprite;
         }

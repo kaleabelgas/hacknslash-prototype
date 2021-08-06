@@ -5,6 +5,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Melee Weapon", menuName = "Scriptable Object/Entity")]
 public class MeleeWeapon : ScriptableObject
 {
-    public Sprite WeaponSprite;
-    public int Damage;
+    [SerializeField]
+    private Sprite weaponSprite;
+    [SerializeField]
+    private int damage;
+
+    public Sprite WeaponSprite => weaponSprite;
+
+    public int Damage => damage;
 }
