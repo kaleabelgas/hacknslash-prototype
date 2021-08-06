@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MeleeWeaponManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private MeleeWeapon weapon;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        GetComponent<SpriteRenderer>().sprite = weapon.WeaponSprite;
     }
 }

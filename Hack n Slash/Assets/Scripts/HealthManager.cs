@@ -7,9 +7,9 @@ public class HealthManager : MonoBehaviour
 {
     private int healthDefault;
 
-    public event Action<string> OnEntityDeath;
+    public static event Action<string> OnEntityDeath;
 
-    public event Action<int> OnEntityHit;
+    public static event Action<int> OnEntityHit;
 
     public int CurrentHealth { get; private set; }
 

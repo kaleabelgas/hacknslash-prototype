@@ -17,5 +17,4 @@ public class Entity : ScriptableObject
     public int Health => health;
 
     public Sprite EntitySprite => entitySprite;
-
 }
