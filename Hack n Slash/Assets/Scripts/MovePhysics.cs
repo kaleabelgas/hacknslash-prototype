@@ -3,46 +3,57 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovePhysics : MonoBehaviour, IMovement
 {
-    private Rigidbody2D rb2D;
+    [SerializeField] private bool _doesFlipObject;
 
-    private float moveSpeed;
-    private Vector2 direction;
-    private bool isFacingRight = true;
+    private Rigidbody2D _rb2D;
 
-    private void Start()
-    {
-        rb2D = GetComponent<Rigidbody2D>();
-    }
+    private float _moveSpeed;
+    private Vector2 _direction;
+    private bool _isFacingRight = true;
 
     public void SetMoveSpeed(float moveSpeed)
     {
-        this.moveSpeed = moveSpeed;
-        //Debug.Log(moveSpeed);
+        _moveSpeed = moveSpeed;
     }
+
     public void SetMovement(Vector2 direction)
     {
-        this.direction = direction;
+        _direction = direction;
     }
+
+    private void Start()
+    {
+        _rb2D = GetComponent<Rigidbody2D>();
+    }
+
     private void Move()
     {
-        rb2D.MovePosition(rb2D.position + direction * moveSpeed * Time.deltaTime);
-        //Debug.Log(moveSpeed, this);
+        _rb2D.MovePosition(_rb2D.position + _moveSpeed * Time.deltaTime * _direction);
 
-        if (direction.x < 0 && isFacingRight)
-            Flip();
-        else if (direction.x > 0 && !isFacingRight)
-            Flip();
+        if(!_doesFlipObject)
+        {
+            return;
+        }
 
+        if (_direction.x < 0 && _isFacingRight)
+        {
+            Flip();
+        }
+        else if (_direction.x > 0 && !_isFacingRight)
+        {
+            Flip();
+        }
     }
 
     private void Flip()
     {
-        isFacingRight = !isFacingRight;
+        _isFacingRight = !_isFacingRight;
         transform.Rotate(0, 180, 0);
     }
 
     private void FixedUpdate()
     {
         Move();
+        Debug.Log(_direction);
     }
 }

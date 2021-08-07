@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputListener : MonoBehaviour
+[CreateAssetMenu(fileName = "InputListener", menuName = "Misc/InputListener")]
+public class InputListener : ScriptableObject
 {
-    private IMovement movement;
+    public event Action<Vector2> OnMove;
+    public event Action OnShoot;
 
-    public void OnMove(InputAction.CallbackContext callbackContext)
+    public void Move(InputAction.CallbackContext callbackContext)
     {
         var input = callbackContext.ReadValue<Vector2>();
-        movement.SetMovement(input);
+        OnMove?.Invoke(input);
+        Debug.Log(input);
     }
 
-    private void Start() => movement = GetComponent<IMovement>();
-
+    public void Shoot(InputAction.CallbackContext callbackContext)
+    {
+        OnShoot?.Invoke();
+    }
 }

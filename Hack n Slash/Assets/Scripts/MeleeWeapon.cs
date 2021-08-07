@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Melee Weapon", menuName = "Scriptable Object/Entity")]
-public class MeleeWeapon : ScriptableObject
+[CreateAssetMenu(fileName = "New Melee Weapon", menuName = "Weapons/Melee")]
+public class MeleeWeapon : Weapon
 {
-    [SerializeField]
-    private Sprite weaponSprite;
-    [SerializeField]
-    private int damage;
-
-    public Sprite WeaponSprite => weaponSprite;
-
-    public int Damage => damage;
+    public override void Fire()
+    {
+        Debug.Log("Firing");
+    }
 }

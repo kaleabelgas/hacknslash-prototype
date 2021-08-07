@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acf914026593934eb94230f2f34be7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _weapon: {fileID: 11400000, guid: fe900e46feddf89418276ea56fe07fd6, type: 2}
 --- !u!1 &1688029246
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,9 +314,8 @@ GameObject:
   - component: {fileID: 1688029249}
   - component: {fileID: 1688029248}
   - component: {fileID: 1688029247}
-  - component: {fileID: 1688029252}
   - component: {fileID: 1688029251}
-  - component: {fileID: 1688029253}
+  - component: {fileID: 1688029252}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd5977effe42c042b765c692c109df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _doesFlipObject: 0
 --- !u!50 &1688029248
 Rigidbody2D:
   serializedVersion: 4
@@ -449,9 +450,9 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1688029252}
+      - m_Target: {fileID: 11400000, guid: 78a3ec89dde0e094586e6ef971f1627c, type: 2}
         m_TargetAssemblyTypeName: InputListener, Assembly-CSharp
-        m_MethodName: OnMove
+        m_MethodName: Move
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -468,7 +469,19 @@ MonoBehaviour:
     m_ActionId: d1c36537-753b-4a5e-a98e-e8bcfa12c724
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 78a3ec89dde0e094586e6ef971f1627c, type: 2}
+        m_TargetAssemblyTypeName: InputListener, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 37421c72-f5a4-4d18-81fb-384ca02f4c89
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -525,19 +538,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1688029246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea85f0bf5ae83a47831c2d1a78a845b, type: 3}
+  m_Script: {fileID: 11500000, guid: 65e198a081c24dd43bda6dcd112bba84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1688029253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1688029246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c9a6f9dca1528d46bc3bd9983f64e7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 1b1af4420a5eb2a43b593d9d8c7d6fca, type: 2}
+  _entity: {fileID: 11400000, guid: 1b1af4420a5eb2a43b593d9d8c7d6fca, type: 2}
+  _inputListener: {fileID: 11400000, guid: 78a3ec89dde0e094586e6ef971f1627c, type: 2}

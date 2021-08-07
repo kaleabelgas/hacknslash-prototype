@@ -2,17 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityManager : MonoBehaviour
+public abstract class EntityManager : MonoBehaviour
 {
-    [SerializeField] private Entity entity;
+    [SerializeField] private Entity _entity;
+    [SerializeField] private InputListener _inputListener;
 
     private void Start()
     {
-        GetComponent<IMovement>().SetMoveSpeed(entity.Speed);
+        GetComponent<IMovement>().SetMoveSpeed(_entity.Speed);
+        _inputListener.OnMove += GetComponent<IMovement>().SetMovement;
 
-        if (!(entity.EntitySprite is null))
+        if (!(_entity.EntitySprite == null))
         {
-            GetComponent<SpriteRenderer>().sprite = entity.EntitySprite;
+            GetComponent<SpriteRenderer>().sprite = _entity.EntitySprite;
         }
     }
 }

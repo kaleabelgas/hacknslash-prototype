@@ -2,19 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Entity", menuName = "Scriptable Object/Entity")]
-public class Entity : ScriptableObject
+public abstract class Entity : ScriptableObject
 {
-    [SerializeField]
-    private Sprite entitySprite;
-    [SerializeField]
-    private int speed;
-    [SerializeField]
-    private int health;
+    [SerializeField] private Sprite _entitySprite;
+    [SerializeField] private int _speed;
+    [SerializeField] private int _health;
 
-    public int Speed => speed;
+    public int Speed => _speed;
 
-    public int Health => health;
+    public int Health => _health;
 
-    public Sprite EntitySprite => entitySprite;
+    public Sprite EntitySprite => _entitySprite;
 }

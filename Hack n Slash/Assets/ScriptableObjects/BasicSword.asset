@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24bf0b8218ca21d4a97d0fea35d26f8f, type: 3}
-  m_Name: Player
+  m_Script: {fileID: 11500000, guid: c689228edc4399f48ad8e088d11c6371, type: 3}
+  m_Name: BasicSword
   m_EditorClassIdentifier: 
-  _entitySprite: {fileID: 0}
-  _speed: 5
-  _health: 0
+  _weaponSprite: {fileID: 0}
+  _damage: 5

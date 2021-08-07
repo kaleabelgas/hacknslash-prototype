@@ -3,22 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthManager : MonoBehaviour
+public abstract class HealthManager : MonoBehaviour
 {
-    private int healthDefault;
+    private int _healthDefault;
+
+    private int _currentHealth;
 
     public static event Action<string> OnEntityDeath;
 
     public static event Action<int> OnEntityHit;
 
-    public int CurrentHealth { get; private set; }
+    public int CurrentHealth => _currentHealth;
 
     public virtual void GetDamaged(int damage, GameObject hitter)
     {
         OnEntityHit?.Invoke(damage);
-        CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
+        _currentHealth = Mathf.Max(0, _currentHealth - damage);
 
-        if (CurrentHealth <= 0)
+        if (_currentHealth <= 0)
         {
             Die();
         }
@@ -26,11 +28,11 @@ public class HealthManager : MonoBehaviour
 
     public void Die() => OnEntityDeath?.Invoke(gameObject.tag);
 
-    public void GetHealed(int heal) => CurrentHealth = Mathf.Min(healthDefault, CurrentHealth + heal);
+    public void GetHealed(int heal) => _currentHealth = Mathf.Min(_healthDefault, _currentHealth + heal);
 
     public void SetHealth(int health = 0)
     {
-        healthDefault = health;
-        CurrentHealth = healthDefault;
+        _healthDefault = health;
+        _currentHealth = _healthDefault;
     }
 }
