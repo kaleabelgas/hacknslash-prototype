@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,8 +6,25 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Melee Weapon", menuName = "Weapons/Melee")]
 public class MeleeWeapon : Weapon
 {
-    public override void Fire()
+    [SerializeField] private float radius;
+    public event Action<Collider2D[]> HitEntity;
+
+    public override void Fire(Vector2 firePoint, GameObject user)
     {
+        Collider2D[] hitInfo = Physics2D.OverlapCircleAll(firePoint, radius);
+
+        foreach(var hits in hitInfo)
+        {
+            var healthManager = hits.transform.GetComponent<HealthManager>();
+            if (healthManager == null)
+            {
+                continue;
+            }
+            healthManager.GetDamaged(Damage, user);
+            Debug.Log("Damaging");
+        }
+
+        HitEntity?.Invoke(hitInfo);
         Debug.Log("Firing");
     }
 }

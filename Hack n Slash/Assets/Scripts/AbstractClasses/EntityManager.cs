@@ -5,12 +5,22 @@ using UnityEngine;
 public abstract class EntityManager : MonoBehaviour
 {
     [SerializeField] private Entity _entity;
-    [SerializeField] private InputListener _inputListener;
 
-    private void Start()
+    private HealthManager _healthManager;
+
+    protected virtual void Awake()
+    {
+        _healthManager = GetComponent<HealthManager>();
+    }
+
+    protected virtual void Start()
     {
         GetComponent<IMovement>().SetMoveSpeed(_entity.Speed);
-        _inputListener.OnMove += GetComponent<IMovement>().SetMovement;
+
+        if(_healthManager != null)
+        {
+            _healthManager.SetHealth(_entity.Health);
+        }
 
         if (!(_entity.EntitySprite == null))
         {

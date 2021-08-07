@@ -12,4 +12,9 @@ public class WeaponManager : MonoBehaviour
 
         }
     }
+
+    public void Fire()
+    {
+        _weapon.Fire(transform.position, transform.parent.gameObject);
+    }
 }

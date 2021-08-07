@@ -11,5 +11,5 @@ public abstract class Weapon : ScriptableObject
 
     public int Damage => _damage;
 
-    public abstract void Fire();
+    public abstract void Fire(Vector2 firePoint, GameObject user);
 }

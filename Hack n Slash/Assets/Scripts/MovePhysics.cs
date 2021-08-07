@@ -54,6 +54,5 @@ public class MovePhysics : MonoBehaviour, IMovement
     private void FixedUpdate()
     {
         Move();
-        Debug.Log(_direction);
     }
 }

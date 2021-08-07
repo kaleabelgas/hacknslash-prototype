@@ -17,6 +17,11 @@ public abstract class HealthManager : MonoBehaviour
 
     public virtual void GetDamaged(int damage, GameObject hitter)
     {
+        if (hitter.CompareTag(gameObject.tag))
+        {
+            return;
+        }
+
         OnEntityHit?.Invoke(damage);
         _currentHealth = Mathf.Max(0, _currentHealth - damage);
 
@@ -26,7 +31,11 @@ public abstract class HealthManager : MonoBehaviour
         }
     }
 
-    public void Die() => OnEntityDeath?.Invoke(gameObject.tag);
+    public void Die()
+    {
+        OnEntityDeath?.Invoke(gameObject.tag);
+        Debug.Log("ded", this);
+    }
 
     public void GetHealed(int heal) => _currentHealth = Mathf.Min(_healthDefault, _currentHealth + heal);
 
