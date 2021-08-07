@@ -21,10 +21,8 @@ public class MeleeWeapon : Weapon
                 continue;
             }
             healthManager.GetDamaged(Damage, user);
-            Debug.Log("Damaging");
         }
 
         HitEntity?.Invoke(hitInfo);
-        Debug.Log("Firing");
     }
 }

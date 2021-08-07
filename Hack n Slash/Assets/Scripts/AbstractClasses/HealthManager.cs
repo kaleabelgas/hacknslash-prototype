@@ -34,7 +34,6 @@ public abstract class HealthManager : MonoBehaviour
     public void Die()
     {
         OnEntityDeath?.Invoke(gameObject.tag);
-        Debug.Log("ded", this);
     }
 
     public void GetHealed(int heal) => _currentHealth = Mathf.Min(_healthDefault, _currentHealth + heal);
