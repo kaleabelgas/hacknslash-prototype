@@ -5,14 +5,11 @@ using UnityEngine;
 
 public abstract class HealthManager : MonoBehaviour
 {
+    [SerializeField] private HealthSystemEventChannel eventChannel;
+
     private int _healthDefault;
 
     private int _currentHealth;
-
-    public static event Action<string> OnEntityDeath;
-
-    public static event Action<int> OnEntityHit;
-
     public int CurrentHealth => _currentHealth;
 
     public virtual void GetDamaged(int damage, GameObject hitter)
@@ -22,7 +19,8 @@ public abstract class HealthManager : MonoBehaviour
             return;
         }
 
-        OnEntityHit?.Invoke(damage);
+        eventChannel.InvokeEntityHit(gameObject, damage);
+
         _currentHealth = Mathf.Max(0, _currentHealth - damage);
 
         if (_currentHealth <= 0)
@@ -33,7 +31,7 @@ public abstract class HealthManager : MonoBehaviour
 
     public void Die()
     {
-        OnEntityDeath?.Invoke(gameObject.tag);
+        eventChannel.InvokeEntityDeath(gameObject);
     }
 
     public void GetHealed(int heal) => _currentHealth = Mathf.Min(_healthDefault, _currentHealth + heal);
