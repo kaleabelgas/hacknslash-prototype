@@ -7,9 +7,9 @@ public class InventoryController : MonoBehaviour
 {
     [SerializeField] private CurrencySystem _currencySystem;
 
-    private readonly Dictionary<ItemData, int> _inventory = new Dictionary<ItemData, int>();
+    private readonly Dictionary<ItemType, int> _inventory = new Dictionary<ItemType, int>();
 
-    public void Pickup(ItemData item, int quantity)
+    public void Receive(ItemType item, int quantity)
     {
         if (_inventory.ContainsKey(item))
         {
@@ -19,7 +19,7 @@ public class InventoryController : MonoBehaviour
         _inventory[item] += quantity;
     }
 
-    public void Drop(ItemData item, int quantity)
+    public void Drop(ItemType item, int quantity)
     {
         if (!_inventory.ContainsKey(item))
         {

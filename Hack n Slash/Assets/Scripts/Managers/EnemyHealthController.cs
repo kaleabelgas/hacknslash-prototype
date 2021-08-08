@@ -4,4 +4,9 @@ using UnityEngine;
 
 public class EnemyHealthController : HealthController
 {
+    public override void Die()
+    {
+        base.Die();
+        gameObject.SetActive(false);
+    }
 }

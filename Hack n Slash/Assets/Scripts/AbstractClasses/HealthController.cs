@@ -29,7 +29,7 @@ public abstract class HealthController : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         eventChannel.InvokeEntityDeath(gameObject);
     }
