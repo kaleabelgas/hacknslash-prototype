@@ -6,32 +6,43 @@ using UnityEngine;
 public class CurrencySystem : ScriptableObject
 {
     public event Action<Dictionary<GameObject, long>> OnEconomyUpdate;
-    private readonly Dictionary<GameObject, long> _economy = new Dictionary<GameObject, long>();
+    private readonly Dictionary<GameObject, long> _bankAccount = new Dictionary<GameObject, long>();
 
     public void Earn(GameObject user, int amount)
     {
-        if(!_economy.ContainsKey(user))
+        if(!_bankAccount.ContainsKey(user))
         {
-            _economy.Add(user, amount);
-            OnEconomyUpdate?.Invoke(_economy);
+            _bankAccount.Add(user, amount);
+            OnEconomyUpdate?.Invoke(_bankAccount);
             return;
         }
-        OnEconomyUpdate?.Invoke(_economy);
-        _economy[user] += amount;
+        OnEconomyUpdate?.Invoke(_bankAccount);
+        _bankAccount[user] += amount;
     }
 
     public long CheckBalance(GameObject user)
     {
-        return _economy.ContainsKey(user)
-            ? _economy[user]
+        return _bankAccount.ContainsKey(user)
+            ? _bankAccount[user]
             : 0;
+    }
+
+    public long CheckBalanceAllUsers()
+    {
+        long total = 0;
+        foreach (var account in _bankAccount)
+        {
+            total += account.Value;
+        }
+        return total;
     }
 
     public bool Withdraw(GameObject user, int amount)
     {
-        if(amount <= _economy[user])
+        if(amount <= _bankAccount[user])
         {
-            _economy[user] -= amount;
+            _bankAccount[user] -= amount;
+            OnEconomyUpdate?.Invoke(_bankAccount);
             return true;
         }
         return false;
