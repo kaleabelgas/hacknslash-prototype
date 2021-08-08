@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class MovePhysics : MonoBehaviour, IMovement
+public class PhysicsMovement : MonoBehaviour, IMovementBehavior
 {
     [SerializeField] private bool _doesFlipObject;
 

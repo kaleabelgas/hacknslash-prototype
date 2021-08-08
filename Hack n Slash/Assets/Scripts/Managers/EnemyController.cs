@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : EntityManager
+public class EnemyController : EntityController
 {
     protected override void Awake()
     {

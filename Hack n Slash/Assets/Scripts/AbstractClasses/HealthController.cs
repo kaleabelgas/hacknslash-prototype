@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class HealthManager : MonoBehaviour
+public abstract class HealthController : MonoBehaviour
 {
     [SerializeField] private HealthSystemEventChannel eventChannel;
 

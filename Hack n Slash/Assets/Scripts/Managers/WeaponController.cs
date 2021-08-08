@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponController : MonoBehaviour
 {
     [SerializeField] private Weapon _weapon;
 

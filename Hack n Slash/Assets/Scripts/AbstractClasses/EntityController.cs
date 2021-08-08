@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class EntityManager : MonoBehaviour
+public abstract class EntityController : MonoBehaviour
 {
     [SerializeField] private Entity _entity;
 
-    private HealthManager _healthManager;
+    private HealthController _healthManager;
 
     protected virtual void Awake()
     {
-        _healthManager = GetComponent<HealthManager>();
+        _healthManager = GetComponent<HealthController>();
     }
 
     protected virtual void Start()
     {
-        GetComponent<IMovement>().SetMoveSpeed(_entity.Speed);
+        GetComponent<IMovementBehavior>().SetMoveSpeed(_entity.Speed);
 
         if(_healthManager != null)
         {

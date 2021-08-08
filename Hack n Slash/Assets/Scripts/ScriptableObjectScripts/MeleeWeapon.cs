@@ -15,7 +15,7 @@ public class MeleeWeapon : Weapon
 
         foreach(var hits in hitInfo)
         {
-            var healthManager = hits.transform.GetComponent<HealthManager>();
+            var healthManager = hits.transform.GetComponent<HealthController>();
             if (healthManager == null)
             {
                 continue;
