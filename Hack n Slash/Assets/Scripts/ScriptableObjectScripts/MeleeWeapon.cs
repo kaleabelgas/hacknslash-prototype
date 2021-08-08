@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Melee Weapon", menuName = "Weapons/Melee")]
-public class MeleeWeapon : Weapon
+public class MeleeWeaponData : WeaponData
 {
     [SerializeField] private float radius;
     public event Action<Collider2D[]> HitEntity;

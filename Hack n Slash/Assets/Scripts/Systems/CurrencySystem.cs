@@ -37,14 +37,13 @@ public class CurrencySystem : ScriptableObject
         return total;
     }
 
-    public bool Withdraw(GameObject user, int amount)
+    public void Withdraw(GameObject user, int amount, out bool canWithdraw)
     {
         if(amount <= _bankAccount[user])
         {
             _bankAccount[user] -= amount;
             OnEconomyUpdate?.Invoke(_bankAccount);
-            return true;
         }
-        return false;
+        canWithdraw = false;
     }
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private Weapon _weapon;
+    [SerializeField] private WeaponData _weapon;
 
     private void Start()
     {

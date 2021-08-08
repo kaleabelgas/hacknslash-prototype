@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Entity : ScriptableObject
+public abstract class EntityData : ScriptableObject
 {
     [SerializeField] private Sprite _entitySprite;
     [SerializeField] private int _speed;

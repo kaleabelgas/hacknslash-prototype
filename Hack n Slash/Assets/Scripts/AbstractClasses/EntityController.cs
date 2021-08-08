@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class EntityController : MonoBehaviour
 {
-    [SerializeField] private Entity _entity;
+    [SerializeField] private EntityData _entity;
 
     private HealthController _healthManager;
 

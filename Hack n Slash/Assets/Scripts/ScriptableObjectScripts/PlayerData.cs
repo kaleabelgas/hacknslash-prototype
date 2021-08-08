@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Player", menuName = "Entity/Player")]
-public class PlayerData : Entity
+public class PlayerData : EntityData
 {
 
 }

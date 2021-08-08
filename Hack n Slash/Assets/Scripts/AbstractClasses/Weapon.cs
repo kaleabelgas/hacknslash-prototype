@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : ScriptableObject
+public abstract class WeaponData : ScriptableObject
 {
     [SerializeField] private Sprite _weaponSprite;
     [SerializeField] private int _damage;
