@@ -15,6 +15,7 @@ public class MeleeWeaponData : WeaponData
 
         foreach(var hits in hitInfo)
         {
+            Debug.Log("Hit " + hits.name);
             var healthManager = hits.transform.GetComponent<HealthController>();
             if (healthManager == null)
             {

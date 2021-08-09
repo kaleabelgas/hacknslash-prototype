@@ -6,7 +6,7 @@ public class WeaponController : MonoBehaviour
 
     private void Start()
     {
-        if (!(_weapon.WeaponSprite == null))
+        if (_weapon.WeaponSprite != null)
         {
             GetComponent<SpriteRenderer>().sprite = _weapon.WeaponSprite;
 

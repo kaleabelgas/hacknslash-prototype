@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class EntityAnimationController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private HealthSystemEventChannel eventChannel;
+    private Animator animator;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        eventChannel.OnEntityHit += (entity, amount) =>
-        {
-            if (entity != gameObject) return;
-            AnimationHandler("entityhit");
-        };
     }
 
-    private void AnimationHandler(string clip)
+    public void PlayHitAnimation()
+    {
+        PlayAnimation("entityhit");
+    }
+
+    private void PlayAnimation(string clip)
     {
         animator.Play(clip);
         animator.Play("idle");

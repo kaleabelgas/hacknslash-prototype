@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyController : EntityController
 {
+
     protected override void Awake()
     {
         base.Awake();

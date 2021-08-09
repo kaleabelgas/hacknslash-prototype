@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "CurrencySystem", menuName = "Systems/Currency")]
 public class CurrencySystem : ScriptableObject
 {
     public event Action<Dictionary<GameObject, long>> OnEconomyUpdate;
@@ -43,6 +44,8 @@ public class CurrencySystem : ScriptableObject
         {
             _bankAccount[user] -= amount;
             OnEconomyUpdate?.Invoke(_bankAccount);
+            canWithdraw = true;
+            return;
         }
         canWithdraw = false;
     }

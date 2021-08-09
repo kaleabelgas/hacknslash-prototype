@@ -7,6 +7,9 @@ public abstract class HealthController : MonoBehaviour
 {
     [SerializeField] private HealthSystemEventChannel eventChannel;
 
+    public event Action<HealthEventArgs> OnEntityDeath;
+    public event Action<HealthEventArgs> OnEntityHit;
+
     private int _healthDefault;
 
     private int _currentHealth;
@@ -18,6 +21,14 @@ public abstract class HealthController : MonoBehaviour
         {
             return;
         }
+
+        Debug.Log("Hurt", this);
+
+        OnEntityHit?.Invoke(new HealthEventArgs
+        {
+            Damage = damage,
+            Entity = gameObject
+        });
 
         eventChannel.InvokeEntityHit(gameObject, damage);
 
@@ -32,6 +43,10 @@ public abstract class HealthController : MonoBehaviour
     public virtual void Die()
     {
         eventChannel.InvokeEntityDeath(gameObject);
+        OnEntityDeath?.Invoke(new HealthEventArgs
+        {
+            Entity = gameObject
+        });
     }
 
     public void GetHealed(int heal) => _currentHealth = Mathf.Min(_healthDefault, _currentHealth + heal);

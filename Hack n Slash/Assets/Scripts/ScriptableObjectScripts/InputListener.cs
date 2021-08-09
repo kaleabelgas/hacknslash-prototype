@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[CreateAssetMenu(fileName = "InputListener", menuName = "Misc/InputListener")]
+[CreateAssetMenu(fileName = "InputListener", menuName = "Systems/InputListener")]
 public class InputListener : ScriptableObject
 {
     public event Action<Vector2> OnMove;
