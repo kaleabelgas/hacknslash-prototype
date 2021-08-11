@@ -1,41 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EntityController : MonoBehaviour
 {
-    [SerializeField] private Entity _entity;
-    private LootDropper _lootDropper;
+    private LootDropController _lootDropper;
+    private StatsManager _statsManager;
     private EntityAnimationController _animationController;
-
-    private HealthController _healthController;
 
     protected virtual void Awake()
     {
-        _healthController = GetComponent<HealthController>();
-        _lootDropper = GetComponent<LootDropper>();
+        _statsManager = GetComponent<StatsManager>();
+        _lootDropper = GetComponent<LootDropController>();
         _animationController = GetComponent<EntityAnimationController>();
     }
-
     protected virtual void Start()
     {
-        GetComponent<IMovementBehavior>().SetMoveSpeed(_entity.Speed);
-
-        if(_healthController != null)
-        {
-            _healthController.SetHealth(_entity.Health);
-            _lootDropper.DropLoot();
-
-        }
-        
-        if(_animationController != null)
-        {
-            _healthController.OnEntityHit += _animationController.PlayHitAnimation;
-        }
-
-        if (_entity.EntitySprite != null)
-        {
-            GetComponent<SpriteRenderer>().sprite = _entity.EntitySprite;
-        }
+        _statsManager.OnEntityDeath += _lootDropper.DropLoot;
+        _statsManager.OnEntityHit += _animationController.PlayHitAnimation;
     }
 }

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bf0b8218ca21d4a97d0fea35d26f8f, type: 3}
   m_Name: Player
   m_EditorClassIdentifier: 
-  _entitySprite: {fileID: 0}
-  _speed: 5
-  _health: 0
+  speed: 20
+  health: 0
+  armor: 0

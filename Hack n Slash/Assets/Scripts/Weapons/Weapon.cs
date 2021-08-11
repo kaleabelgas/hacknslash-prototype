@@ -4,12 +4,8 @@ using UnityEngine;
 
 public abstract class Weapon : ScriptableObject
 {
-    [SerializeField] private Sprite _weaponSprite;
-    [SerializeField] private int _damage;
-
-    public Sprite WeaponSprite => _weaponSprite;
-
-    public int Damage => _damage;
+    [SerializeField] private int damage;
+    public int Damage => damage;
 
     public abstract void Fire(Vector2 firePoint, GameObject user);
 }

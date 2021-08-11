@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8acf914026593934eb94230f2f34be7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _weapon: {fileID: 11400000, guid: fe900e46feddf89418276ea56fe07fd6, type: 2}
+  weapon: {fileID: 11400000, guid: fe900e46feddf89418276ea56fe07fd6, type: 2}
 --- !u!61 &1211082040
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -373,9 +373,10 @@ GameObject:
   - component: {fileID: 1688029247}
   - component: {fileID: 1688029251}
   - component: {fileID: 1688029252}
-  - component: {fileID: 1688029253}
   - component: {fileID: 1688029254}
   - component: {fileID: 1688029255}
+  - component: {fileID: 1688029256}
+  - component: {fileID: 1688029253}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -395,7 +396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dd5977effe42c042b765c692c109df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _doesFlipObject: 1
+  doesFlipObject: 1
 --- !u!50 &1688029248
 Rigidbody2D:
   serializedVersion: 4
@@ -601,8 +602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e198a081c24dd43bda6dcd112bba84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entity: {fileID: 11400000, guid: 1b1af4420a5eb2a43b593d9d8c7d6fca, type: 2}
-  _inputListener: {fileID: 11400000, guid: 78a3ec89dde0e094586e6ef971f1627c, type: 2}
+  inputListener: {fileID: 11400000, guid: 78a3ec89dde0e094586e6ef971f1627c, type: 2}
 --- !u!114 &1688029253
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,9 +612,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1688029246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f26d6528cfafc3a46acca35abe3034d6, type: 3}
+  m_Script: {fileID: 11500000, guid: e0ea7f3605e4a4445a4c3c6763a7ee21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entity: {fileID: 11400000, guid: 1b1af4420a5eb2a43b593d9d8c7d6fca, type: 2}
   eventChannel: {fileID: 11400000, guid: 5e394589b9b274347b6be507aa2a124f, type: 2}
 --- !u!114 &1688029254
 MonoBehaviour:
@@ -647,6 +648,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1688029256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688029246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a6cf31c1ccd614194f137b77ac26eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootTable: {fileID: 0}
 --- !u!1001 &1975080891
 PrefabInstance:
   m_ObjectHideFlags: 0

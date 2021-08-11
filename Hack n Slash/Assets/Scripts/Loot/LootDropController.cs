@@ -6,17 +6,20 @@ using UnityEngine;
 /// <summary>
 /// This monobehaviour handles dropping of loot from entity.
 /// </summary>
-public class LootDropper : MonoBehaviour
+public class LootDropController : MonoBehaviour
 {
     [SerializeField] private LootTable lootTable;
 
     public void DropLoot()
     {
-        foreach(LootDrop drop in lootTable.Drops)
+        if (lootTable == null)              return;
+        if (lootTable.ItemBundle == null)   return;
+
+        foreach(ItemBundle bundle in lootTable.ItemBundle)
         {
-            for (int i = 0; i < drop.Amount; i++)
+            for (int amount = 0; amount < bundle.Amount; amount++)
             {
-                Debug.Log(drop.ItemDrop.ToString());
+                bundle.ItemEntity.Drop();
             }
         }
     }

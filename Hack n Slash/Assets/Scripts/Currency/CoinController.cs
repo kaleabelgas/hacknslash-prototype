@@ -7,13 +7,13 @@ using UnityEngine;
 /// </summary>
 public class CoinController : MonoBehaviour
 {
-    [SerializeField] private CurrencySystem _currencySystem;
-    [SerializeField] private Coin _coin;
+    [SerializeField] private CurrencySystem currencySystem;
+    [SerializeField] private Coin coin;
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Player"))
         {
-            _currencySystem.Earn(col.gameObject, _coin.Value);
+            currencySystem.AddToBalance(col.gameObject, coin.Value);
             gameObject.SetActive(false);
         }
     }

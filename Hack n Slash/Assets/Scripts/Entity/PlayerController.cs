@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : EntityController
 {
     private WeaponController _weaponController;
-    [SerializeField] private InputListener _inputListener;
+    [SerializeField] private InputListener inputListener;
 
     protected override void Awake()
     {
@@ -17,7 +17,7 @@ public class PlayerController : EntityController
     {
         base.Start();
 
-        _inputListener.OnMove += GetComponent<IMovementBehavior>().SetMovement;
-        _inputListener.OnFire += _weaponController.Fire;
+        inputListener.OnMove += GetComponent<IMovementBehavior>().SetMovement;
+        inputListener.OnFire += _weaponController.Fire;
     }
 }

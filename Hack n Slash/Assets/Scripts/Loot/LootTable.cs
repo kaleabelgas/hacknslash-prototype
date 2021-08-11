@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LootTable", menuName = "Loot/LootTable")]
 public class LootTable : ScriptableObject
 {
-    public LootDrop[] Drops => _lootDrops;
+    public ItemBundle[] ItemBundle => itemBundle;
 
-    [SerializeField] private LootDrop[] _lootDrops;
+    [SerializeField] private ItemBundle[] itemBundle;
     
 }

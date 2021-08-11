@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PhysicsMovement : MonoBehaviour, IMovementBehavior
 {
-    [SerializeField] private bool _doesFlipObject;
+    [SerializeField] private bool doesFlipObject;
 
     private Rigidbody2D _rb2D;
 
@@ -30,7 +30,7 @@ public class PhysicsMovement : MonoBehaviour, IMovementBehavior
     {
         _rb2D.MovePosition(_rb2D.position + _moveSpeed * Time.deltaTime * _direction);
 
-        if(!_doesFlipObject)
+        if(!doesFlipObject)
         {
             return;
         }

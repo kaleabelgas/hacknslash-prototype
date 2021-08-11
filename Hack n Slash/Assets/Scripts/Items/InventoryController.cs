@@ -5,17 +5,16 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
-    private readonly Dictionary<Item, int> _inventory = new Dictionary<Item, int>();
+    [SerializeField] private Inventory inventory;
 
-    public void Receive(Item item, int quantity)
+    private void Awake()
     {
-        if (_inventory.ContainsKey(item))
-        {
-            _inventory.Add(item, quantity);
-        }
-        else
-        {
-            _inventory[item] += quantity;
-        }
+        inventory.Init();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        var pickup = other.GetComponent<ItemEntity>();
+        inventory.AddItem(pickup.Item);
     }
 }

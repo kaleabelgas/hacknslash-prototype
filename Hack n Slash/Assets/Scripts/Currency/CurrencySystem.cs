@@ -12,7 +12,12 @@ public class CurrencySystem : ScriptableObject
     public event Action<Dictionary<GameObject, long>> OnEconomyUpdate;
     private readonly Dictionary<GameObject, long> _bankAccount = new Dictionary<GameObject, long>();
 
-    public void Earn(GameObject user, int amount)
+    /// <summary>
+    /// Adds <paramref name="amount"/> to balance.
+    /// </summary>
+    /// <param name="user"></param>
+    /// <param name="amount"></param>
+    public void AddToBalance(GameObject user, int amount)
     {
         if(!_bankAccount.ContainsKey(user))
         {

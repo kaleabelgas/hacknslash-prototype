@@ -7,7 +7,6 @@ using UnityEngine;
 public class MeleeWeapon : Weapon
 {
     [SerializeField] private float radius;
-    public event Action<Collider2D[]> HitEntity;
 
     public override void Fire(Vector2 firePoint, GameObject user)
     {
@@ -15,15 +14,12 @@ public class MeleeWeapon : Weapon
 
         foreach(var hits in hitInfo)
         {
-            Debug.Log("Hit " + hits.name);
-            var healthManager = hits.transform.GetComponent<HealthController>();
-            if (healthManager == null)
+            var statsManager = hits.transform.GetComponent<StatsManager>();
+            if (statsManager == null)
             {
                 continue;
             }
-            healthManager.GetDamaged(Damage, user);
+            statsManager.GetDamaged(user, Damage);
         }
-
-        HitEntity?.Invoke(hitInfo);
     }
 }

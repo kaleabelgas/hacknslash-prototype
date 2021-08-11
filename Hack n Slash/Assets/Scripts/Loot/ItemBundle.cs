@@ -6,12 +6,11 @@ using UnityEngine;
 /// Contains information about how much Item to drop.
 /// </summary>
 [CreateAssetMenu(fileName = "LootDrop", menuName = "Loot/LootDrop")]
-public class LootDrop : ScriptableObject
+public class ItemBundle : ScriptableObject
 {
-    public ItemDrop ItemDrop => _itemDrop;
-    public int Amount => _amount;
+    public ItemEntity ItemEntity => itemEntity;
+    public int Amount => amount;
 
-    [SerializeField] private ItemDrop _item;
-    [SerializeField] private int _amount;
-    private ItemDrop _itemDrop;
+    [SerializeField] private ItemEntity itemEntity;
+    [SerializeField] private int amount;
 }

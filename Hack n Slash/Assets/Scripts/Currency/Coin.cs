@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class Coin : ScriptableObject
 {
-    private int _value;
-    public int Value => _value;
+    private int value;
+    public int Value => value;
 }

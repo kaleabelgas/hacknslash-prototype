@@ -2,19 +2,10 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    [SerializeField] private Weapon _weapon;
-
-    private void Start()
-    {
-        if (_weapon.WeaponSprite != null)
-        {
-            GetComponent<SpriteRenderer>().sprite = _weapon.WeaponSprite;
-
-        }
-    }
+    [SerializeField] private Weapon weapon;
 
     public void Fire()
     {
-        _weapon.Fire(transform.position, transform.parent.gameObject);
+        weapon.Fire(transform.position, transform.parent.gameObject);
     }
 }

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public abstract class Entity : ScriptableObject
 {
-    [SerializeField] private Sprite _entitySprite;
-    [SerializeField] private int _speed;
-    [SerializeField] private int _health;
+    [SerializeField] private int speed;
+    [SerializeField] private int health;
+    [SerializeField] private int armor;
 
-    public int Speed => _speed;
+    public int Speed => speed;
 
-    public int Health => _health;
+    public int Health => health;
 
-    public Sprite EntitySprite => _entitySprite;
+    public int Armor => armor;
+
 }
