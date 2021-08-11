@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07825ac4694749d4cbeb8c8a0270f9ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entity: {fileID: 11400000, guid: 0de9f352c9d7f0a47bd0b30710153d7b, type: 2}
+  _entity: {fileID: 0}
 --- !u!50 &3074593722412885001
 Rigidbody2D:
   serializedVersion: 4
@@ -207,8 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15f19e6370ff41c458c56cf15072bed2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1424157899}
-  eventChannel: {fileID: 11400000, guid: 5e394589b9b274347b6be507aa2a124f, type: 2}
 --- !u!114 &1975080893
 MonoBehaviour:
   m_ObjectHideFlags: 0
