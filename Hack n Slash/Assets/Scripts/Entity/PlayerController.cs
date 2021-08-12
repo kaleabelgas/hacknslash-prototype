@@ -10,6 +10,7 @@ public class PlayerController : EntityController
     protected override void Awake()
     {
         base.Awake();
+        // TODO: change this to use weaponcontroller on user side instead of weapon itsef.
         _weaponController = GetComponentInChildren<WeaponEntity>();
     }
 

@@ -17,4 +17,9 @@ public class InventoryController : MonoBehaviour
         var pickup = other.GetComponent<ItemEntity>();
         inventory.AddItem(pickup.Item);
     }
+
+    public void AddToInventory(Item itemToAdd)
+    {
+        inventory.AddItem(itemToAdd);
+    }
 }

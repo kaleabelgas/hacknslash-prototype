@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Goes on the coin object.
 /// </summary>
-public class CoinController : MonoBehaviour
+public class CoinEntity : MonoBehaviour
 {
     [SerializeField] private CurrencySystem currencySystem;
     [SerializeField] private Coin coin;
