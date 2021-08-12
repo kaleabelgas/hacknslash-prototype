@@ -29,14 +29,14 @@ public class CurrencySystem : ScriptableObject
         _bankAccount[user] += amount;
     }
 
-    public long CheckBalance(GameObject user)
+    public long GetBalance(GameObject user)
     {
         return _bankAccount.ContainsKey(user)
             ? _bankAccount[user]
             : 0;
     }
 
-    public long CheckBalanceAllUsers()
+    public long GetBalanceAllUsers()
     {
         long total = 0;
         foreach (var account in _bankAccount)
@@ -46,15 +46,12 @@ public class CurrencySystem : ScriptableObject
         return total;
     }
 
-    public void Withdraw(GameObject user, int amount, out bool canWithdraw)
+    public void RemoveFromBalance(GameObject user, int amount)
     {
         if(amount <= _bankAccount[user])
         {
             _bankAccount[user] -= amount;
             OnEconomyUpdate?.Invoke(_bankAccount);
-            canWithdraw = true;
-            return;
         }
-        canWithdraw = false;
     }
 }

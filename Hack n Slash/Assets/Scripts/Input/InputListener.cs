@@ -10,6 +10,7 @@ public class InputListener : ScriptableObject
     public event Action<Vector2> OnMove;
     public event Action OnFire;
     public event Action OnInteract;
+    public event Action OnEscape;
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
@@ -28,5 +29,9 @@ public class InputListener : ScriptableObject
     public void Interact(InputAction.CallbackContext callbackContext)
     {
         OnInteract?.Invoke();
+    }
+    public void Escape(InputAction.CallbackContext callbackContext)
+    {
+        OnEscape?.Invoke();
     }
 }
