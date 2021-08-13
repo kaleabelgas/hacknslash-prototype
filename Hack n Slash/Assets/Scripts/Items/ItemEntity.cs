@@ -7,12 +7,5 @@ using UnityEngine;
 /// </summary>
 public class ItemEntity : MonoBehaviour
 {
-    public Item Item => item;
-    [SerializeField] private Item item;
-
-    // Create drop animation or something
-    public void Drop()
-    {
-
-    }
+    public Item Item { get; set; }
 }

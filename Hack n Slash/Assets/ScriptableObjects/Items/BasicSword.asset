@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c689228edc4399f48ad8e088d11c6371, type: 3}
+  m_Name: BasicSword
+  m_EditorClassIdentifier: 
+  itemName: Sword
+  itemSprite: {fileID: 7482667652216324306, guid: 5f43c6fb56ff71b4e878a333c88d9c1a, type: 3}
+  price: 10
+  baseDamage: 10
+  criticalChance: 1
+  criticalDamage: 1.5
+  radius: 1

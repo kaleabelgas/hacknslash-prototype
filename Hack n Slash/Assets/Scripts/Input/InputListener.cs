@@ -10,23 +10,27 @@ public class InputListener : ScriptableObject
     public event Action<Vector2> OnMove;
     public event Action OnFire, OnInteract, OnEscape;
 
-    private bool _enableInput;
-    public bool EnableInput
-    {
-        get => _enableInput;
-        set => _enableInput = value;
-    }
+    public bool EnableInput { get; set; } = true;
+
+
+
+    private void OnEnable() => EnableInput = true;
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
-        if (!_enableInput) return;
+        if (!EnableInput)
+        {
+            OnMove?.Invoke(Vector2.zero);
+            return;
+        }
         var input = callbackContext.ReadValue<Vector2>();
+        Debug.Log("pressed");
         OnMove?.Invoke(input);
     }
 
     public void Shoot(InputAction.CallbackContext callbackContext)
     {
-        if (!_enableInput) return;
+        if (!EnableInput) return;
         if (callbackContext.started)
         {
             OnFire?.Invoke();
@@ -34,7 +38,11 @@ public class InputListener : ScriptableObject
     }
     public void Interact(InputAction.CallbackContext callbackContext)
     {
-        OnInteract?.Invoke();
+        if (callbackContext.performed)
+        {
+
+            OnInteract?.Invoke();
+        }
     }
     public void Escape(InputAction.CallbackContext callbackContext)
     {

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[CreateAssetMenu(menuName = "Inventory/Inventory")]
 public class Inventory : ScriptableObject
 {
     [SerializeField] private List<ItemBundle> startItems;
@@ -14,13 +14,13 @@ public class Inventory : ScriptableObject
         _inventory = new Dictionary<Item, int>(startItems.Count);
         foreach (var itemBundle in startItems)
         {
-            if (_inventory.ContainsKey(itemBundle.ItemEntity.Item))
+            if (_inventory.ContainsKey(itemBundle.Item))
             {
-                Debug.LogWarning($"Can't add {itemBundle.ItemEntity.name} twice!");
+                Debug.LogWarning($"Can't add {itemBundle.Item.ItemName} twice!");
                 continue;
             }
 
-            _inventory.Add(itemBundle.ItemEntity.Item, itemBundle.Amount);
+            _inventory.Add(itemBundle.Item, itemBundle.Amount);
         }
     }
 

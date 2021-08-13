@@ -10,7 +10,7 @@ using UnityEngine;
 public class CurrencySystem : ScriptableObject
 {
     public event Action<Dictionary<GameObject, long>> OnEconomyUpdate;
-    private readonly Dictionary<GameObject, long> _bankAccount = new Dictionary<GameObject, long>();
+    private readonly Dictionary<GameObject, long> _bankAccounts = new Dictionary<GameObject, long>();
 
     /// <summary>
     /// Adds <paramref name="amount"/> to balance.
@@ -19,27 +19,27 @@ public class CurrencySystem : ScriptableObject
     /// <param name="amount"></param>
     public void AddToBalance(GameObject user, int amount)
     {
-        if(!_bankAccount.ContainsKey(user))
+        if(!_bankAccounts.ContainsKey(user))
         {
-            _bankAccount.Add(user, amount);
-            OnEconomyUpdate?.Invoke(_bankAccount);
+            _bankAccounts.Add(user, amount);
+            OnEconomyUpdate?.Invoke(_bankAccounts);
             return;
         }
-        OnEconomyUpdate?.Invoke(_bankAccount);
-        _bankAccount[user] += amount;
+        OnEconomyUpdate?.Invoke(_bankAccounts);
+        _bankAccounts[user] += amount;
     }
 
     public long GetBalance(GameObject user)
     {
-        return _bankAccount.ContainsKey(user)
-            ? _bankAccount[user]
-            : 0;
+        return _bankAccounts.ContainsKey(user)
+            ? _bankAccounts[user]
+            : 10;
     }
 
     public long GetBalanceAllUsers()
     {
         long total = 0;
-        foreach (var account in _bankAccount)
+        foreach (var account in _bankAccounts)
         {
             total += account.Value;
         }
@@ -48,10 +48,15 @@ public class CurrencySystem : ScriptableObject
 
     public void RemoveFromBalance(GameObject user, int amount)
     {
-        if(amount <= _bankAccount[user])
+        if (!_bankAccounts.ContainsKey(user))
         {
-            _bankAccount[user] -= amount;
-            OnEconomyUpdate?.Invoke(_bankAccount);
+            AddToBalance(user, 0);
+        }
+
+        if (amount <= _bankAccounts[user])
+        {
+            _bankAccounts[user] -= amount;
+            OnEconomyUpdate?.Invoke(_bankAccounts);
         }
     }
 }

@@ -34,6 +34,7 @@ public class ShopUI : MonoBehaviour
 
             _shopItems.Add(shopItem);
         }
+        shopUIPanel.SetActive(false);
     }
 
     /// <summary>

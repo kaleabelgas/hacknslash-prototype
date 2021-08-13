@@ -25,4 +25,9 @@ public class MeleeWeapon : Weapon
             entityStatsManager.GetDamaged(user, (int)finalDamage);
         }
     }
+
+    public override void Use(GameObject _)
+    {
+
+    }
 }

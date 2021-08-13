@@ -26,15 +26,18 @@ public class ShopEntity : MonoBehaviour
         if (!_playerNearby) return;
         if (_shopIsOpen) return;
 
+        Debug.Log("Shop Opened!");
         _shopIsOpen = true;
 
         inputListener.EnableInput = false;
+
         shopUI.SetupShop(currencySystem.GetBalance(_player), this);
     }
 
     private void CloseShopMenu()
     {
         shopUI.CloseShopUI();
+        _shopIsOpen = false;
         inputListener.EnableInput = true;
     }
 
@@ -46,17 +49,24 @@ public class ShopEntity : MonoBehaviour
     public void TransferItemToInventory(Item item, int price)
     {
         currencySystem.RemoveFromBalance(_player, price);
+        Debug.Log($"Bought {item.ItemName} for {price!} Remaining Balance: {currencySystem.GetBalance(_player)}");
         _player.GetComponent<InventoryController>().AddToInventory(item);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _playerNearby = collision.gameObject.CompareTag("Player");
-        if (_playerNearby) _player = collision.gameObject;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _playerNearby = true;
+            _player = collision.gameObject;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _playerNearby = collision.gameObject.CompareTag("Player");
-        if (_playerNearby) _player = null;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _playerNearby = false;
+            _player = null;
+        }
     }
 }

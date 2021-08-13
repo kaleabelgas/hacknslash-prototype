@@ -12,14 +12,16 @@ public class LootDropController : MonoBehaviour
 
     public void DropLoot()
     {
-        if (lootTable == null)              return;
-        if (lootTable.ItemBundle == null)   return;
+        if (lootTable == null) return;
+        if (lootTable.ItemBundle == null) return;
 
-        foreach(ItemBundle bundle in lootTable.ItemBundle)
+        foreach (ItemBundle bundle in lootTable.ItemBundle)
         {
             for (int amount = 0; amount < bundle.Amount; amount++)
             {
-                bundle.ItemEntity.Drop();
+                GameObject itemDrop = new GameObject(bundle.Item.ItemName);
+                var itemEntity = itemDrop.AddComponent<ItemEntity>();
+                itemEntity.Item = bundle.Item;
             }
         }
     }

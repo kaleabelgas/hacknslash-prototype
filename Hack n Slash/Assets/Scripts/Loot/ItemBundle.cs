@@ -8,9 +8,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LootDrop", menuName = "Loot/LootDrop")]
 public class ItemBundle : ScriptableObject
 {
-    public ItemEntity ItemEntity => itemEntity;
+    public Item Item => item;
     public int Amount => amount;
 
-    [SerializeField] private ItemEntity itemEntity;
+    [SerializeField] private Item item;
     [SerializeField] private int amount;
 }

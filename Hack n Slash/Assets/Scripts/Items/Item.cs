@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Item : ScriptableObject
 {
-    public string Name => itemName;
+    public string ItemName => itemName;
     public Sprite ItemSprite => itemSprite;
 
     public int Price => price;
