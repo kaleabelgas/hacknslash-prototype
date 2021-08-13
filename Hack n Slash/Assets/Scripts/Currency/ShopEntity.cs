@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Handles shop interface to player object and inventory.
+/// </summary>
 public class ShopEntity : MonoBehaviour
 {
     [SerializeField] private InputListener inputListener;
     [SerializeField] private CurrencySystem currencySystem;
     [SerializeField] private ShopUI shopUI;
-    
+
     private bool _playerNearby;
     private bool _shopIsOpen;
     private GameObject _player;
@@ -22,19 +25,17 @@ public class ShopEntity : MonoBehaviour
     {
         if (!_playerNearby) return;
         if (_shopIsOpen) return;
-        
+
         _shopIsOpen = true;
 
-
-        // Pass in currencySystem.CheckBalance(_player) to shop ui to change text color etc.
-
-        shopUI.SetupShop(currencySystem.GetBalance(_player));
+        inputListener.EnableInput = false;
+        shopUI.SetupShop(currencySystem.GetBalance(_player), this);
     }
-    
-    // Possibly just hook up shopUI.CloseShopUI directly to the esc event of InputListener.
+
     private void CloseShopMenu()
     {
         shopUI.CloseShopUI();
+        inputListener.EnableInput = true;
     }
 
     /// <summary>
@@ -50,10 +51,12 @@ public class ShopEntity : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _playerNearby = collision.CompareTag("Player");
+        _playerNearby = collision.gameObject.CompareTag("Player");
+        if (_playerNearby) _player = collision.gameObject;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        _playerNearby = collision.CompareTag("Player");
+        _playerNearby = collision.gameObject.CompareTag("Player");
+        if (_playerNearby) _player = null;
     }
 }

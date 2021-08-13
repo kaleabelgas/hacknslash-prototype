@@ -1,27 +1,46 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
+
+/// <summary>
+/// One-time buy Shop Item. 
+/// </summary>
 public class ShopItem : MonoBehaviour
 {
-    [SerializeField] private Item item;
-    [SerializeField] private int price;
-
-    public Item Item => item;
-    public int Price => price;
+    private Item _item;
+    public Item Item => _item;
 
     public event Action<ShopItem> OnPlayerClick;
+
+    [SerializeField] private TextMeshProUGUI price;
+    [SerializeField] private TextMeshProUGUI itemName;
+    [SerializeField] private Image itemImage;
 
     private void Awake()
     {
         // Tells ButtonClick method to run whenever the button onClick event is invoked.
-        GetComponent<Button>().onClick.AddListener(ButtonClick);
+        GetComponent<Button>().onClick.AddListener(
+            () =>
+            {
+                OnPlayerClick?.Invoke(this);
+                LockItem();
+            });
     }
 
-    private void ButtonClick()
+    public void SetupShopItem(Item item)
+    {        
+        _item = item;
+
+        itemImage.sprite = item.ItemSprite;
+        price.text = item.Price.ToString();
+        itemName.text = item.name.ToString();
+    }
+    public void LockItem()
     {
-        OnPlayerClick?.Invoke(this);
+        // do other stuff when item is not clickable
+        GetComponent<Button>().interactable = false;
+        itemName.color = Color.red;
     }
 }

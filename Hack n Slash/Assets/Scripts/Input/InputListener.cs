@@ -8,22 +8,28 @@ using UnityEngine.InputSystem;
 public class InputListener : ScriptableObject
 {
     public event Action<Vector2> OnMove;
-    public event Action OnFire;
-    public event Action OnInteract;
-    public event Action OnEscape;
+    public event Action OnFire, OnInteract, OnEscape;
+
+    private bool _enableInput;
+    public bool EnableInput
+    {
+        get => _enableInput;
+        set => _enableInput = value;
+    }
 
     public void Move(InputAction.CallbackContext callbackContext)
     {
+        if (!_enableInput) return;
         var input = callbackContext.ReadValue<Vector2>();
         OnMove?.Invoke(input);
     }
 
     public void Shoot(InputAction.CallbackContext callbackContext)
     {
+        if (!_enableInput) return;
         if (callbackContext.started)
         {
             OnFire?.Invoke();
-
         }
     }
     public void Interact(InputAction.CallbackContext callbackContext)

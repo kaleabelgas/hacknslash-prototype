@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles shop UI and player input on UI
+/// </summary>
 public class ShopUI : MonoBehaviour
 {
     [SerializeField] private GameObject shopUIPanel;
-    [SerializeField] private GameObject buttonPrefab;
+    [SerializeField] private GameObject shopItemPrefab;
     [SerializeField] private Item[] itemsInShop;
-    [SerializeField] private ShopEntity shopEntity;
 
-    private List<GameObject> _shopItemButtons;
+    private ShopEntity _shopEntity;
+    private List<ShopItem> _shopItems;
 
     private void Awake() => Init();
 
@@ -19,39 +22,38 @@ public class ShopUI : MonoBehaviour
     /// </summary>
     private void Init()
     {
-        _shopItemButtons = new List<GameObject>();
+        _shopItems = new List<ShopItem>();
 
         foreach (Item item in itemsInShop)
         {
-            GameObject shopItemButton = Instantiate(buttonPrefab, shopUIPanel.transform);
+            GameObject shopItemObject = Instantiate(shopItemPrefab, shopUIPanel.transform);
+            ShopItem shopItem = shopItemObject.GetComponent<ShopItem>();
 
-            ShopItem shopItem = shopItemButton.GetComponent<ShopItem>();
+            shopItem.SetupShopItem(item);
+            shopItem.OnPlayerClick += GiveItemToPlayer;
 
-            shopItemButton.name = shopItem.Item.name;
-            shopItem.OnPlayerClick += BuyItem;
-
-            _shopItemButtons.Add(shopItemButton);
+            _shopItems.Add(shopItem);
         }
     }
 
-    public void SetupShop(long balance)
+    /// <summary>
+    /// Setups the shop depending on the player balance - disables buttons the player can't afford.
+    /// Also sets up the UI to work with the specific shop provided in shopEntity.
+    /// </summary>
+    /// <param name="playerBalance"></param>
+    /// <param name="shopEntity"></param>
+    public void SetupShop(long playerBalance, ShopEntity shopEntity)
     {
-        shopUIPanel.SetActive(true);
+        _shopEntity = shopEntity;
 
-        foreach(GameObject shopItemButton in _shopItemButtons)
+        foreach (var shopItem in _shopItems)
         {
-            var price = shopItemButton.GetComponent<ShopItem>().Price;
-
-            if (price > balance)
+            if (shopItem.Item.Price > playerBalance)
             {
-                // TODO: Change text, colors etc for expensive item
-                shopItemButton.GetComponent<Button>().interactable = false;
-            }
-            else
-            {
-                // TODO: Change text, colors etc for affordable item
+                shopItem.LockItem();
             }
         }
+        shopUIPanel.SetActive(true);
     }
 
     public void CloseShopUI()
@@ -60,9 +62,9 @@ public class ShopUI : MonoBehaviour
         shopUIPanel.SetActive(false);
     }
 
-    private void BuyItem(ShopItem shopItem)
+    private void GiveItemToPlayer(ShopItem shopItem)
     {
         // Do some other stuff like animations
-        shopEntity.TransferItemToInventory(shopItem.Item, shopItem.Price);
+        _shopEntity.TransferItemToInventory(shopItem.Item, shopItem.Item.Price);
     }
 }
