@@ -23,9 +23,17 @@ public class InputListener : ScriptableObject
             OnMove?.Invoke(Vector2.zero);
             return;
         }
-        var input = callbackContext.ReadValue<Vector2>();
-        Debug.Log("pressed");
-        OnMove?.Invoke(input);
+
+        if (callbackContext.performed)
+        {
+            var input = callbackContext.ReadValue<Vector2>();
+            Debug.Log("pressed");
+            OnMove?.Invoke(input);
+        }
+        if (callbackContext.canceled)
+        {
+            OnMove?.Invoke(Vector2.zero);
+        }
     }
 
     public void Shoot(InputAction.CallbackContext callbackContext)

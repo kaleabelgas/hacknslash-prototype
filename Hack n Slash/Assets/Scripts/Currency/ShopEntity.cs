@@ -17,6 +17,7 @@ public class ShopEntity : MonoBehaviour
 
     private void Awake()
     {
+        shopUI = FindObjectOfType<ShopUI>();
         inputListener.OnInteract += OpenShopMenu;
         inputListener.OnEscape += CloseShopMenu;
     }
