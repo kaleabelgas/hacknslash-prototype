@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Items/Potion")]
-public class HealthPotion : Item
+public class Potion : Item
 {
     [SerializeField] private StatType type;
     [SerializeField] private int amount;
