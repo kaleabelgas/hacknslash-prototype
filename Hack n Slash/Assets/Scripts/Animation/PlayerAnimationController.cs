@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Handles animation for the entity.
 /// </summary>
-public class EntityAnimationController : MonoBehaviour
+public class PlayerAnimationController : MonoBehaviour
 {
     private Animator animator;
 

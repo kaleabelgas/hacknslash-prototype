@@ -6,7 +6,7 @@ using UnityEngine;
 /// Contains information about how much Item to drop.
 /// </summary>
 [CreateAssetMenu(fileName = "LootDrop", menuName = "Loot/LootDrop")]
-public class ItemBundle : ScriptableObject
+public class LootBundle : ScriptableObject
 {
     public Item Item => item;
     public int Amount => amount;

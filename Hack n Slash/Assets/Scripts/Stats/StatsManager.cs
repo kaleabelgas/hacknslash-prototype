@@ -5,11 +5,10 @@ using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
-    [SerializeField] private Entity entity;
-    [SerializeField] private HealthSystemEventChannel eventChannel;
+    [SerializeField] private Player player;
 
-    public event Action OnEntityDeath;
-    public event Action<int> OnEntityHit;
+    public event Action OnDeath;
+    public event Action<int> OnHit;
 
 
     private Dictionary<StatType, int> _currentStats = new Dictionary<StatType, int>
@@ -25,7 +24,7 @@ public class StatsManager : MonoBehaviour
     private void Awake()
     {
         movementBehavior = GetComponent<IMovementBehavior>();
-        Init(entity);
+        InitializeStats(player);
     }
 
     public void AddToStat(StatType stat, int amount)
@@ -55,12 +54,12 @@ public class StatsManager : MonoBehaviour
         return _currentStats[stat];
     }
 
-    public void Init(Entity entity)
+    public void InitializeStats(Player player)
     {
-        _currentStats[StatType.MaxHealth] = entity.Health;
-        _currentStats[StatType.Health] = entity.Health;
-        _currentStats[StatType.Speed] = entity.Speed;
-        _currentStats[StatType.Armor] = entity.Armor;
+        _currentStats[StatType.MaxHealth] = player.Health;
+        _currentStats[StatType.Health] = player.Health;
+        _currentStats[StatType.Speed] = player.Speed;
+        _currentStats[StatType.Armor] = player.Armor;
 
         movementBehavior.SetMoveSpeed(_currentStats[StatType.Speed]);
     }
@@ -76,10 +75,7 @@ public class StatsManager : MonoBehaviour
         int totalDamage = (int)(damage * (float)(_currentStats[StatType.Armor] / 100));
 
         _currentStats[StatType.Health] = Mathf.Max(0, _currentStats[StatType.Health] - totalDamage);
-
-
-        eventChannel.InvokeEntityHit(gameObject, damage);
-        OnEntityHit?.Invoke(damage);
+        OnHit?.Invoke(damage);
 
         if (_currentStats[StatType.Health] <= 0)
         {
@@ -89,8 +85,7 @@ public class StatsManager : MonoBehaviour
     }
     public virtual void Die()
     {
-        eventChannel.InvokeEntityDeath(gameObject);
-        OnEntityDeath?.Invoke();
+        OnDeath?.Invoke();
     }
 
     #endregion

@@ -5,13 +5,9 @@ using UnityEngine;
 public abstract class Item : ScriptableObject
 {
     public string ItemName => itemName;
-    public Sprite ItemSprite => itemSprite;
-
-    public int Price => price;
+    public Sprite Sprite => sprite;
 
     [SerializeField] private string itemName;
-    // Maybe add a locked itemsprite
-    [SerializeField] private Sprite itemSprite;
-    [SerializeField] private int price;
+    [SerializeField] private Sprite sprite;
     public abstract void Use(GameObject usedBy);
 }
