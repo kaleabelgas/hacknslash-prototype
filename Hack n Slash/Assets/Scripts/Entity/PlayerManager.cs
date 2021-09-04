@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
     private LootDropController _lootDropper;
     private StatsManager _statsManager;
     private PlayerAnimationController _animationController;
-    private WeaponEntityController _weaponController;
+    private WeaponController _weaponController;
     [SerializeField] private InputListener inputListener;
 
 
@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
         _statsManager = GetComponent<StatsManager>();
         _lootDropper = GetComponent<LootDropController>();
         _animationController = GetComponent<PlayerAnimationController>();
-        _weaponController = GetComponentInChildren<WeaponEntityController>();
+        _weaponController = GetComponent<WeaponController>();
     }
     private void Start()
     {
