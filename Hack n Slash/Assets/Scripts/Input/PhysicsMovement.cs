@@ -16,7 +16,7 @@ public class PhysicsMovement : MonoBehaviour, IMovementBehavior
         _moveSpeed = moveSpeed;
     }
 
-    public void SetMovement(Vector2 direction)
+    public void SetMovementDirection(Vector2 direction)
     {
         _direction = direction;
     }

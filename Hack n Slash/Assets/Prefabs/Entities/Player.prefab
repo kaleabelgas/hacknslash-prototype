@@ -323,7 +323,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0ea7f3605e4a4445a4c3c6763a7ee21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 11400000, guid: 2e3f8003fab947c4a87f33464e9786cb, type: 2}
 --- !u!61 &5441573594701665399
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -364,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  player: {fileID: 11400000, guid: 2e3f8003fab947c4a87f33464e9786cb, type: 2}
   inputListener: {fileID: 11400000, guid: 78a3ec89dde0e094586e6ef971f1627c, type: 2}
 --- !u!114 &5441573594701665396
 MonoBehaviour:

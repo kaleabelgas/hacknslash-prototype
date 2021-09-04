@@ -10,6 +10,7 @@ public class PlayerManager : NetworkBehaviour
     private StatsManager _statsManager;
     private PlayerAnimationController _animationController;
     private WeaponController _weaponController;
+    [SerializeField] private Player player;
     [SerializeField] private InputListener inputListener;
 
 
@@ -23,9 +24,10 @@ public class PlayerManager : NetworkBehaviour
     private void Start()
     {
         if (!hasAuthority) return;
+        _statsManager.InitializeStats(player);
         _statsManager.OnDeath += _lootDropper.DropLoot;
         _statsManager.OnHit += _animationController.PlayHitAnimation; 
-        inputListener.OnMove += GetComponent<IMovementBehavior>().SetMovement;
-        inputListener.OnFire += _weaponController.Fire;
+        inputListener.OnMove += GetComponent<IMovementBehavior>().SetMovementDirection;
+        inputListener.OnFire += () => _weaponController.Fire(player.Team);
     }
 }

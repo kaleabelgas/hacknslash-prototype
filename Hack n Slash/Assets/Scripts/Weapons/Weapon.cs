@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Weapon : Item
+public abstract class Weapon : ScriptableObject
 {
     [SerializeField] private int baseDamage;
 
@@ -17,5 +17,5 @@ public abstract class Weapon : Item
     public float CriticalChance => criticalChance;
     public float CriticalDamage => criticalDamage;
 
-    public abstract void Fire(Vector2 firePoint, GameObject user);
+    public abstract void Fire(Vector2 firePoint, Team userTeam);
 }

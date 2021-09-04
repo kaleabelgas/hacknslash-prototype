@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class StatsManager : MonoBehaviour
 {
-    [SerializeField] private Player player;
-
     public event Action OnDeath;
     public event Action<int> OnHit;
+    private Player _player;
 
 
     private Dictionary<StatType, int> _currentStats = new Dictionary<StatType, int>
@@ -24,7 +23,6 @@ public class StatsManager : MonoBehaviour
     private void Awake()
     {
         movementBehavior = GetComponent<IMovementBehavior>();
-        InitializeStats(player);
     }
 
     public void AddToStat(StatType stat, int amount)
@@ -56,6 +54,7 @@ public class StatsManager : MonoBehaviour
 
     public void InitializeStats(Player player)
     {
+        _player = player;
         _currentStats[StatType.MaxHealth] = player.Health;
         _currentStats[StatType.Health] = player.Health;
         _currentStats[StatType.Speed] = player.Speed;
@@ -65,12 +64,9 @@ public class StatsManager : MonoBehaviour
     }
 
     #region Health System
-    public virtual void GetDamaged(GameObject hitter, int damage)
+    public virtual void GetDamaged(Team team, int damage)
     {
-        if (hitter.CompareTag(gameObject.tag))
-        {
-            return;
-        }
+        if (_player.Team == team) return;
 
         int totalDamage = (int)(damage * (float)(_currentStats[StatType.Armor] / 100));
 
