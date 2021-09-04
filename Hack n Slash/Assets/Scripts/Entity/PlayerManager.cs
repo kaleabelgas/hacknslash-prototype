@@ -2,8 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     private LootDropController _lootDropper;
     private StatsManager _statsManager;
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     }
     private void Start()
     {
+        if (!hasAuthority) return;
         _statsManager.OnDeath += _lootDropper.DropLoot;
         _statsManager.OnHit += _animationController.PlayHitAnimation; 
         inputListener.OnMove += GetComponent<IMovementBehavior>().SetMovement;
